@@ -1,5 +1,5 @@
 %fsg_aafsput(r,q,s,sigma,t,N,rho)
-function fsg_aafsput(r,q,s,sigma,t,N,rho)
+function fsg_aafsput_linear(r,q,s,sigma,t,N,rho)
 tic
 dt=t/N;
 u=exp(sigma*sqrt(dt));
