@@ -1,5 +1,6 @@
 %fsg_agput_am_linear(r,q,s,x,running_ave,running_ave_time,sigma,t,N,rho)
 function fsg_agput_am_linear(r,q,s,x,running_ave,running_ave_time,sigma,t,N,rho)
+tic
 dt=t/N;
 u=exp(sigma*sqrt(dt));
 d=1/u;
@@ -65,4 +66,5 @@ V = fac*V_h+(1-fac)*V_l;
 end
 
 V
+toc
 return

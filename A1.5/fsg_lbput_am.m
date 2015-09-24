@@ -1,4 +1,6 @@
+%fsg_lbput_am(r,q,s,x,running_min,sigma,t,N)
 function fsg_lbput_am(r,q,s,x,running_min,sigma,t,N)
+tic
 dt=t/N;
 u=exp(sigma*sqrt(dt));
 d=1/u;
@@ -50,4 +52,5 @@ for i=N:-1:1
 
 end
 W{1}(length(W{1}))
+toc
 return 

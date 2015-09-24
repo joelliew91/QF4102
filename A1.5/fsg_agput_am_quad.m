@@ -1,5 +1,6 @@
 %fsg_aafsput_quad(r,q,s,sigma,t,N,rho)
 function fsg_agput_am_quad(r,q,s,x,running_ave,running_ave_time,sigma,t,N,rho)
+tic
 dt=t/N;
 u=exp(sigma*sqrt(dt));
 d=1/u;
@@ -83,4 +84,5 @@ part3 = V_h.*(x_ll-running_ave).*(x_l-running_ave)./((x_ll-x_h).*(x_l-x_h));
 V = part1+part2+part3;
 end
 V
+toc
 return
