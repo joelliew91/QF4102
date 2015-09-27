@@ -5,23 +5,34 @@ x=min(s,smin)/s;
 dt=t/N;
 u=exp(sigma*sqrt(dt));
 d=1/u;
-k=abs(ceil(log(x)/log(u)));
+k_u=ceil(log(x)/log(d));
+k_d=k_u-1;
 disc = exp(-r*dt);
 p = (exp((r-q)*dt)-d)/(u-d);
 
-j=(N+k+1):-1:max(0,k-N);%Set indices for Terminal value
+for i=0:1:N
+j=k_u+i:-1:max(0,k_d-i); %Set indices for Terminal value
 setx=d.^j;
-W=ones(1,length(j))- setx; %Value of option at terminal
-for i=N-1:-1:0
-    if k-i<=0 %Check for terminal lower bound
-        temp = disc*(p*u*W(length(W)-1)+(1-p)*d*W(length(W))); %Calculate lower bound if it exists
+x_grid{i+1} = setx;
+x_grid{i+1} = x_grid{i+1}';
+end
+W{N+1}=max(1-x_grid{N+1},0);
+%Value of option at terminal
+for i=N:-1:1
+    if k_d-i<0 %Check for terminal lower bound
+        l = length(x_grid{i+1});
+        temp = disc*(p*u*W{i+1}(l-1)+(1-p)*d*W{i+1}(l)); %Calculate lower bound if it exists
     end
-    j=1:1:length(W)-2;
-    W=disc*(p*u*W(j)+(1-p)*d*W(j+2));
-    if k-i<=0
-        W(length(W)+1)=temp; %Input the lower bound value
+    j=1:1:length(x_grid{i+1})-2;
+    W{i}=disc*(p*u*W{i+1}(j)+(1-p)*d*W{i+1}(j+2));
+    if k_d-i<0
+        W{i}(length(W{i})+1)=temp; %Input the lower bound value
     end
 end
-z=length(setx);
-cfl_bm3=(x-setx(z-k-1))/(setx(z-k)-setx(z-k-1))*(s*W(2))+(setx(z-k)-x)/(setx(z-k)-setx(z-k-1))*(s*W(1))
+W{1};
+x_grid{1};
+den = x_grid{1}(1)-x_grid{1}(2);
+fac = (x - x_grid{1}(2))/den;
+t=fac*W{1}(1)+(1-fac)*W{1}(2);
+cfl_bm3=s*t
 return
