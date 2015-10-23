@@ -1,5 +1,5 @@
 %v = fd_ex3(r,q,s,x,sig,t)
-function v = fd_ex3_cond(r,q,s,x,sig,t)
+function v = fd_ex3_cond1(r,q,s,x,sig,t)
     smax = 3*x;
     h = 0.01;
     I = round(smax/h);
