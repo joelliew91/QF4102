@@ -1,10 +1,10 @@
 %v = fd_ex3(r,q,s,x,sig,t)
-function v = fd_ex3(r,q,s,x,sig,t)
+function v = fd_ex3_cond(r,q,s,x,sig,t)
     smax = 3*x;
     h = 0.01;
-    dt = 0.01;
-    N = round(t/dt);
     I = round(smax/h);
+    dt = 1/((sig*I)^2+r*I); % get dt such that it fulfils the monotonicity condition
+    N = round(t/dt);
     V_grid = zeros(I+1,N+1);
     % Initiate Boundary values
     V_grid(I+1,:) = h*I-x*exp(-r*(t-(0:dt:t)));
