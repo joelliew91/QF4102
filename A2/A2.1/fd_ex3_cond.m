@@ -7,7 +7,7 @@ function v = fd_ex3_cond(r,q,s,x,sig,t)
     N = ceil(t/dt)-1;
     V_grid = zeros(I+1,N+1);
     % Initiate Boundary values
-    V_grid(I+1,:) = h*I-x*exp(-r*(t-(0:dt:t)));
+    V_grid(I+1,:) = h*I*exp(q*(0:dt:t))-x*exp(-r*(t-(0:dt:t)));
     V_grid(1,:) =0;
     %
     V_grid(:,N+1) = max((0:I)*h - x,0); % Initiate Extreme values
