@@ -1,15 +1,15 @@
 % mc_call(n,runs,x)
 function result=mc_call(n,runs,x)
-    r = 0.03;t = 0.5; % Initial Values
+    r = 0.03;t = 0.5;
     s1 = 0.95;sig1 = 0.36;q1 = 0.02;
     s2 = 1.25;sig2 = 0.25;q2 = 0.03;
     s3 = 0.46;sig3 = 0.47;q3 = 0.01;
     rho = [1,0.86,0.22;0.86,1,-0.25;0.22,-0.25,1];
-    L = chol(rho)'; % Cholesky Decomposition
+    L = chol(rho)';
     for i=1:runs
-        v = randn(3,n); % Generate 3 uncorrelation random normal distribution
-        e = (L*v)'; % Change the path such that they are now correlated
-        e1 = e(:,1); 
+        v = randn(3,n);
+        e = (L*v)';
+        e1 = e(:,1);
         e2 = e(:,2);
         e3 = e(:,3);
         p1 = s1*exp((r-q1-sig1^2/2)*t+sig1*e1*sqrt(t));
