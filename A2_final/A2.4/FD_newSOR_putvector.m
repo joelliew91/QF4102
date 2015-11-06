@@ -1,6 +1,6 @@
 %Finite Difference - Fully implicit Scheme for vanilla call options
 %Calling syntex:
-%v=FD_newSOR_putvector(S0,X,r,T,sig,ds,dt,q,w)
+%v=FD_newSOR_put(S0,X,r,T,sig,ds,dt,q,w)
 function v=FD_newSOR_putvector(S0,X,r,T,sig,ds,dt,q,w)
 N=T/dt;
 I=12/ds;
