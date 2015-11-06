@@ -70,11 +70,11 @@ end;
 II
 find=floor((log(S0)+6)/ds);
 find1=(log(S0)+6)/ds;
-%if find - (log(S0)+6)/ds+1>0.5
-%    find=find+1;
-%end;
-%v=(1-find1+find)*Vgrid(find+1,1)+(find1-find)*Vgrid(find+2,1);
-v=Vgrid(:,1);
+if find - (log(S0)+6)/ds+1>0.5
+    find=find+1;
+end;
+v=(1-find1+find)*Vgrid(find+1,1)+(find1-find)*Vgrid(find+2,1);
+
 
 
 end
